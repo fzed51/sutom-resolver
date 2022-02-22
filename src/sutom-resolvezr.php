@@ -13,7 +13,7 @@ function readData(int $len, string $firstLetter): array
     while (($data = fgetcsv($handle, 0, "\t")) !== false) {
         if (((int)$data[2]) === $len) {
             $word = $data[0];
-            if (strpos($word, ' ') >= 0
+            if (strpos($word, ' ') === false
                 && strpos($word, '-') === false
                 && strpos($word, $firstLetter) === 0) {
                 $clean = sansAccent($word);
@@ -71,7 +71,11 @@ function wordWeight($word): float
     $cars = array_unique(str_split($word));
     $w = 0;
     foreach ($cars as $car) {
-        $w += $fregCar[strtoupper($car)];
+        if(strpos('ABCDEFGHIJKLMNOPQRSTUVWXYZ', strtoupper($car)) !== false) {
+            $w += $fregCar[strtoupper($car)];
+        } else {
+            echo "/!\\ Attention '$car' n'est pas un caractère autorisé" . PHP_EOL;
+        }
     }
 
     return $w / (1 + (strlen($word) - count($cars)));
@@ -105,7 +109,7 @@ function filtre(array $words, $actual, $result): array
             } elseif ($result[$i] === '0') {
                 $ok = $actual[$i] !== $word[$i] && strpos($wordUnknow, $actual[$i]) !== false;
             } else {
-                $ok = $actual[$i] !== $word[$i];
+                $ok = strpos($wordUnknow, $actual[$i]) === false;
             }
         }
 
@@ -138,6 +142,10 @@ function requestFixLength(string $question, int $len): string
     return $rep;
 }
 
+function showResultat (string $result): void {
+    writeln(str_replace(['1','0','.'],['🟥','🟡','🟦' ], $result));
+}
+
 $nbCar = (int)Cli\request("nombre de lettre du mot ?");
 $fl = strtolower(trim(request("Quel est la 1ere lettre ?")));
 
@@ -147,6 +155,7 @@ do {
     showList($words);
     $actual = strtolower(requestFixLength("Donnez une proposition ?", $nbCar));
     $result = strtolower(requestFixLength("Donnez le resultat ?", $nbCar));
+    showResultat($result);
     $words = filtre($words, $actual, $result);
 } while (count($words) > 1);
 
