@@ -15,6 +15,7 @@ function readData(int $len, string $firstLetter): array
             $word = $data[0];
             if (strpos($word, ' ') === false
                 && strpos($word, '-') === false
+                && strpos($word, "'") === false
                 && strpos($word, $firstLetter) === 0) {
                 $clean = sansAccent($word);
                 $words[] = [$clean, wordWeight($clean), (double)$data[1]];
