@@ -14,3 +14,20 @@ function writeln (string $message): void {
     write($message);
     echo PHP_EOL;
 }
+
+function requestFixLength(string $question, int $len): string
+{
+    $rep = null;
+    do {
+        if ($rep !== null) {
+            writeln("Il n'y a pas le bon nopmbre de lettre");
+        }
+        $rep = trim(request($question));
+    } while (strlen($rep) !== $len);
+    return $rep;
+}
+
+
+function showResultat (string $result): void {
+    writeln(str_replace(['1','0','.'],['🟥','🟡','🟦' ], $result));
+}
