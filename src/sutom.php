@@ -20,6 +20,7 @@ function showKnows(string $word, string $knows): string {
     for($n=0; $n<$len; $n++){
         $show .= $knows[$n] === '1' ? $word[$n] : '_';
     }
+    $show = implode(' ', str_split($show));
     return strtoupper($show);
 }
 
