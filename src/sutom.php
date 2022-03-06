@@ -75,7 +75,6 @@ $firstLetter = $word[0];
 Writeln("Trouvez un mots de $len lettres commençant par $firstLetter");
 
 $knows = '1' . str_repeat('.', $len - 1);
-Writeln($word);
 $step = [];
 do {
     if (!empty($step)){
