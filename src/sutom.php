@@ -7,63 +7,10 @@ use function Cli\showResultat;
 
 include __DIR__ . "/cli.php";
 include __DIR__ . "/data.php";
+include __DIR__ . "/functions.php";
 
 
-function showKnows(string $word, string $knows): string {
-    $len = strlen($word);
-    if($len !== strlen($knows)){
-        throw new RuntimeException(
-            "Il existe une difference de longueur entre le mots et les lettres connues."
-        );
-    }
-    $show = "";
-    for($n=0; $n<$len; $n++){
-        $show .= $knows[$n] === '1' ? $word[$n] : '_';
-    }
-    $show = implode(' ', str_split($show));
-    return strtoupper($show);
-}
 
-function getResultat(string $word, string $actual): string {
-    $len = strlen($word);
-    if($len !== strlen($actual)){
-        throw new RuntimeException(
-            "Il existe une difference de longueur entre le mots et la proposition."
-        );
-    }
-    $result = "";
-    for($n=0; $n<$len; $n++){
-        if($word[$n] === $actual[$n]){
-            $word[$n] = "_";
-            $result .= '1';
-        } else {
-            $result .= '.';
-        }
-    }
-    for($n=0; $n<$len; $n++){
-        $pos = strpos($word, $actual[$n]);
-        if($result[$n] !== '1' && $pos !== false){
-            $word[$pos] = "_";
-            $result[$n] = '0';
-        }
-    }
-    return $result;
-}
-
-function updateKnows(string $knows, string $resultat): string {
-    $len = strlen($knows);
-    if($len !== strlen($resultat)){
-        throw new RuntimeException(
-            "Il existe une difference de longueur entre les lettres connues et le resultat."
-        );
-    }
-    for($n=0; $n<$len; $n++) {
-        if ($resultat[$n] === '1') {
-            $knows[$n] = "1";
-        }
-    }
-    return $knows;
-}
 
 $words = readData();
 try {
