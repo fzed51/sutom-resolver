@@ -1,4 +1,8 @@
 <?php
+use function Cli\writeln;
+
+include_once __DIR__ . "/cli.php";
+
 function showKnows(string $word, string $knows): string
 {
     $len = strlen($word);

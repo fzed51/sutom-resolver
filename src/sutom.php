@@ -5,9 +5,9 @@ use function Cli\writeln;
 use function Cli\requestFixLength;
 use function Cli\showResultat;
 
-include __DIR__ . "/cli.php";
-include __DIR__ . "/data.php";
-include __DIR__ . "/functions.php";
+include_once __DIR__ . "/cli.php";
+include_once __DIR__ . "/data.php";
+include_once __DIR__ . "/functions.php";
 
 
 
