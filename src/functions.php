@@ -89,6 +89,9 @@ function filtre(array $words, $actual, $result): array
             } elseif ($result[$i] === '0') {
                 $pos = strpos($wordUnknow, $actual[$i]);
                 $ok = $ok && $actual[$i] !== $word[$i] && $pos !== false;
+                if ($pos !== false) {
+                    $wordUnknow[$pos] = '_';
+                }
             } else {
                 $ok = $ok && strpos($wordUnknow, $actual[$i]) === false;
             }
