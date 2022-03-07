@@ -10,9 +10,12 @@
     }
   ],
   "require": {
-    "php": "7.4"
+    "php": "^7.4"
   },
   "scripts": {
     "start": "php ./src/sutom-resolvezr.php"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
   }
 }
