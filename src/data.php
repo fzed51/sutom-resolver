@@ -35,7 +35,6 @@ function readDataWithStartAndLength (int $len, string $firstLetter): array
     return array_values($words);
 }
 
-
 function sansAccent(string $word): string
 {
     $s = htmlentities($word);

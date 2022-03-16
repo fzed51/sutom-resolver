@@ -1,4 +1,5 @@
 <?php
+
 use function Cli\writeln;
 
 include_once __DIR__ . "/cli.php";
@@ -116,4 +117,20 @@ function showList($words, $len = 10): void
     for ($i = 0; $i < $len; $i++) {
         writeln($words[$i]);
     }
+}
+
+/**
+ * retourne un mot aléatoire d'une liste
+ * @param string[] $words
+ * @return string
+ */
+function getRandomWord(array $words)
+{
+    try {
+        $n = count($words);
+        $word = $words[random_int(0, $n - 1)][0];
+    } catch (Exception $e) {
+        throw new RuntimeException("Impossible de générer un nombre aléatoire");
+    }
+    return $word;
 }
