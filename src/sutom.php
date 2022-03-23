@@ -1,5 +1,6 @@
 <?php
 
+use function Cli\pause;
 use function Cli\requestFixLength;
 use function Cli\showResultat;
 use function Cli\write;
@@ -58,3 +59,4 @@ for ($n = 0; $n < $nbStep; $n++) {
     write(sprintf("#%d ", $n + 1));
     showResultat($step[$n]);
 }
+pause();

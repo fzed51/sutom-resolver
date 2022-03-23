@@ -1,5 +1,6 @@
 <?php
 
+use function Cli\pause;
 use function Cli\request;
 use function Cli\writeln;
 use function Cli\requestFixLength;
@@ -29,4 +30,4 @@ if (count($words) === 0) {
 $word = array_pop($words);
 writeln("Barvo le mot à trouver est '$word'");
 
-
+pause();

@@ -27,6 +27,9 @@ function requestFixLength(string $question, int $len): string
     return $rep;
 }
 
+function pause(): void {
+    request('Appuyer sur [entrée] pour continuer.');
+}
 
 function showResultat (string $result): void {
     writeln(str_replace(['1','0','.'],['🟥','🟡','🟦' ], $result));
