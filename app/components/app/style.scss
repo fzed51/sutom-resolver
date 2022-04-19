@@ -1,0 +1,26 @@
+html {
+  font-family: sans-serif;
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+}
+
+.sutom-resolver {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  width: 100vw;
+  min-height: 100vh;
+  .sutom-resolver__container {
+  }
+}
