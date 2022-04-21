@@ -7,7 +7,7 @@ export interface PrimaryProps {
   submitter?: boolean;
 }
 
-export const Primary: FC<PrimaryProps> = ({ children, onClick, submitter }) => {
+export const ButtonPrimary: FC<PrimaryProps> = ({ children, onClick, submitter }) => {
   const handleClick = () => {
     onClick && onClick();
   };
@@ -22,4 +22,4 @@ export const Primary: FC<PrimaryProps> = ({ children, onClick, submitter }) => {
   );
 };
 
-export default Primary;
+export default ButtonPrimary;

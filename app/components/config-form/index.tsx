@@ -1,7 +1,7 @@
 import React, { FC, SyntheticEvent, useState } from "react";
 import { ConfigApp } from "../../types";
-import { Number } from "../inputs/number";
-import { Letter } from "../inputs/letter";
+import { InputNumber } from "../inputs/number";
+import { InputLetter } from "../inputs/letter";
 import Primary from "../buttons/primay";
 
 export interface ConfigFormProps {
@@ -30,7 +30,7 @@ export const ConfigForm: FC<ConfigFormProps> = ({ onSubmit }) => {
       {error !== "" && <>{error}</>}
       <form onSubmit={handleSubmit}>
         <section>
-          <Number
+          <InputNumber
             label="Nombre de lettre"
             value={config.length}
             onChange={handleChange("length")}
@@ -38,7 +38,7 @@ export const ConfigForm: FC<ConfigFormProps> = ({ onSubmit }) => {
           />
         </section>
         <section>
-          <Letter
+          <InputLetter
             label="Première letter"
             value={config.letter}
             onChange={handleChange("letter")}

@@ -1,7 +1,7 @@
-import React, { ChangeEvent, FC } from "react";
+import React, { ChangeEvent, FC, FocusEvent, useMemo, useState } from "react";
 import { InputProps } from "../common";
 import { idGen } from "../IdGen";
-import "../common.scss"
+import "../common.scss";
 
 export interface NumberProps extends InputProps<number> {
   min: number;
@@ -10,12 +10,16 @@ export interface NumberProps extends InputProps<number> {
 const normalizeValue = (min: number, value: number): number =>
   Math.max(min, value);
 
-export const Number: FC<NumberProps> = ({ label, value, onChange, min }) => {
-  const id = idGen("number");
+export const InputNumber: FC<NumberProps> = ({ label, value, onChange, min }) => {
+  const id = useMemo(() => idGen("number"), []);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const v = e.target.value;
-    if (!isNaN(window.Number(v))) {
-      onChange(normalizeValue(min, window.Number(v)));
+    const reg = /^[0-9]*$/;
+    console.debug(v, reg.test(v));
+    if (reg.test(v)) {
+      if (!isNaN(window.Number(v))) {
+        onChange(normalizeValue(min, window.Number(v)));
+      }
     }
   };
   return (
@@ -23,11 +27,12 @@ export const Number: FC<NumberProps> = ({ label, value, onChange, min }) => {
       {label && <label htmlFor={id}>{label}</label>}
       <input
         id={id}
-        defaultValue={normalizeValue(min, value || 0)}
+        value={normalizeValue(min, window.Number(value || 0))}
         onChange={handleChange}
+        onFocus={(e: FocusEvent<HTMLInputElement>) => e.target.select()}
       />
     </div>
   );
 };
 
-export default Number;
+export default InputNumber;
