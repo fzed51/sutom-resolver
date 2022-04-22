@@ -1,0 +1,12 @@
+.proposal-view {
+  display: flex;
+  gap: 1px;
+  .proposal-view_cell {
+    border: 1px solid #0008;
+    border-radius: 0.125em;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+  }
+}
