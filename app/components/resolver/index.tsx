@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import { resolve } from "../../api";
+import React, { FC, useEffect, useState } from "react";
 import { ConfigApp, Proposal } from "../../types";
 import HistoryViewer from "../HistoryViewer";
 import ProposalInput from "../ProposalInput";
@@ -18,29 +19,32 @@ export interface ResolverProps {
 }
 
 export const Resolver: FC<ResolverProps> = ({ config }) => {
-  const [suggestions, setSuggestions] = useState<string[]>(["dehors"]);
-
-  const [history, setHistory] = useState<Proposal[]>([
-    {
-      word: "devoirs",
-      match: ["1", "1", ".", ".", ".", "1", "1"],
-    },
-    {
-      word: "dessous",
-      match: ["1", "1", "1", ".", ".", "0", "1"],
-    },
-  ]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [history, setHistory] = useState<Proposal[]>([]);
   const [current, setCurrent] = useState<Proposal | undefined>(undefined);
+  const getWords = () => {
+    if (current === undefined) {
+      return resolve(config, history).then((words) => setSuggestions(words));
+    }
+    return resolve(config, [...history, current]).then((words) =>
+      setSuggestions(words)
+    );
+  };
+
   const handleSelect = (word: string) => {
     const length = word.length;
     const match = arrayFill(length, ".");
     setCurrent({ word, match });
   };
+  useEffect(() => {
+    getWords();
+  }, []);
   const handleResolve = () => {
-    const body = {
-      config,
-      proposals: [...history, current],
-    };
+    if (current !== undefined) {
+      getWords().then(() => {
+        setHistory((h) => [...h, current]);
+      });
+    }
   };
   return (
     <div className="resolver">
