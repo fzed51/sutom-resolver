@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 require __DIR__ . "/../vendor/autoload.php";
 require  __DIR__ . "/../src/data.php";
+require  __DIR__ . "/../src/functions.php";
 $request = new \Lib\Request();
 
 if ($request->getMethod() !== 'POST'){
@@ -24,6 +25,13 @@ $length = $config['length'];
 $letter = $config['letter'];
 
 $words = readDataWithStartAndLength($length, $letter);
+
+$proposals = $data['proposals'];
+foreach ($proposals as $proposal){
+    $word = $proposal['word'];
+    $match = $proposal['match'];
+    $words = filtre($words, $word, implode('', $match));
+}
 
 $rep = new \Lib\Response(200, $words);
 $rep->render();

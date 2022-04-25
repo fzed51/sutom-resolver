@@ -30,6 +30,15 @@ class Validator
             return false;
         }
 
+        if (!isset($this->data['proposals'])) {
+            $this->addError('il doit y avoir des propositions dans le tableau');
+            return false;
+        }
+        if (!$this->testPropposals($this->data['proposals'])) {
+            $this->addError('les propositions ne sont pas valides');
+            return false;
+        }
+
         return count($this->errors) === 0;
     }
 
@@ -62,6 +71,35 @@ class Validator
             $this->addError('la configuration doit contenir une letter');
         } elseif (!is_string($config['letter']) && strlen($config['letter']) !== 1) {
             $this->addError('la longueur doit être une chaine de 1 caractère');
+        }
+        return count($this->errors) === 0;
+    }
+
+    private function testPropposals($proposals)
+    {
+        if (!is_array($proposals)) {
+            $this->addError('les proposition doivent être un tableau');
+            return false;
+        }
+        foreach ($proposals as $i => $proposal) {
+            if (!$this->testProposal($proposal)) {
+                $this->addError('La proposition no $i n\'est pas valide');
+            }
+        }
+        return count($this->errors) === 0;
+    }
+
+    private function testProposal($proposal)
+    {
+        if (!is_array($proposal)) {
+            $this->addError('la proposition doit être un tableau');
+            return false;
+        }
+        if (!isset($proposal['word'])) {
+            $this->addError('la proposition doit avoir un mot');
+        }
+        if (!isset($proposal['match'])) {
+            $this->addError('la proposition doit avoir un tableau de correspondances');
         }
         return count($this->errors) === 0;
     }

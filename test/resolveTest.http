@@ -3,9 +3,37 @@ Content-Type: application/json
 
 {
   "config": {
-    "length": 8,
+    "length": 10,
     "letter": "p"
-  }
+  },
+  "proposals": []
 }
 
 ###
+
+POST http://localhost:8787/resolve.php
+Content-Type: application/json
+
+{
+  "config": {
+    "length": 10,
+    "letter": "p"
+  },
+  "proposals": [
+    {
+      "word": "plastiquer",
+      "match": [
+        "1",
+        "1",
+        "1",
+        ".",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "."
+      ]
+    }
+  ]
+}
