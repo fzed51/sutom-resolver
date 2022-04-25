@@ -13,9 +13,14 @@
     "php": "^7.4"
   },
   "scripts": {
-    "start": "php ./src/sutom-resolvezr.php"
+    "resolve": "php ./src/sutom-resolvezr.php"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Lib\\": "./src/Lib"
+    }
   }
 }

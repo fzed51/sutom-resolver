@@ -1,0 +1,11 @@
+POST http://localhost:8787/resolve.php
+Content-Type: application/json
+
+{
+  "config": {
+    "length": 8,
+    "letter": "p"
+  }
+}
+
+###

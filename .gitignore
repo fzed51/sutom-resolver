@@ -71,4 +71,6 @@ Desktop.ini
 #  \__, \___|_||_\___|_| \__,_|_|
 #  |___/                         
 *.log
-/dist/
+/dist/*.*
+!/dist/resolve.php
+
