@@ -2,13 +2,17 @@ import React, { FC } from "react";
 import { ButtonProps } from "../common";
 import "../comon.scss";
 
-export const ButtonPrimary: FC<ButtonProps> = ({ children, onClick, submitter }) => {
+export const ButtonSecondary: FC<ButtonProps> = ({
+  children,
+  onClick,
+  submitter,
+}) => {
   const handleClick = () => {
     onClick && onClick();
   };
   return (
     <button
-      className="btn primary"
+      className="btn secondary"
       type={submitter ? "submit" : "button"}
       onClick={handleClick}
     >
@@ -17,4 +21,4 @@ export const ButtonPrimary: FC<ButtonProps> = ({ children, onClick, submitter })
   );
 };
 
-export default ButtonPrimary;
+export default ButtonSecondary;
