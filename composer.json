@@ -19,7 +19,7 @@
       "git add .",
       "git commit -m \"feat / update lasr build\"",
       "git push",
-      "git push heroku develop:main"
+      "git push heroku devlop:main"
     ]
   },
   "require-dev": {
