@@ -1,6 +1,7 @@
 import React, { CSSProperties, FC, MouseEvent } from "react";
 import { Proposal } from "../../types";
 import "./style.scss";
+import cn from "classnames";
 
 export interface ProposalViewerProps {
   proposal: Proposal;
@@ -23,8 +24,9 @@ export const ProposalViewer: FC<ProposalViewerProps> = ({
     console.log("click", index);
     onClick && onClick(index);
   };
+  const isClickable: boolean = !!onClick;
   return (
-    <div className="proposal-view">
+    <div className={cn("proposal-view", { clickable: isClickable })}>
       {letters.map((letter, index) => {
         let style: CSSProperties = {};
         switch (match[index] || ".") {
