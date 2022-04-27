@@ -13,7 +13,14 @@
     "php": "^7.4"
   },
   "scripts": {
-    "resolve": "php ./src/sutom-resolvezr.php"
+    "resolve": "php ./src/sutom-resolvezr.php",
+    "build:heroku": [
+      "webpack build --mode production",
+      "git add .",
+      "git commit -m \"feat / update lasr build\"",
+      "git push",
+      "git push heroku develop:main"
+    ]
   },
   "require-dev": {
     "phpunit/phpunit": "^9.5",
