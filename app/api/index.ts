@@ -9,7 +9,7 @@ export const resolve = (
     config,
     proposals
   });
-  return fetch("http://localhost:8787/resolve.php", {
+  return fetch("/resolve.php", {
     method: "POST",
     headers: {
       "content-type": "application/json",
