@@ -1,0 +1,23 @@
+.input-letter_keybord {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #0001;
+  .input-letter_key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 2em;
+    line-height: 1em;
+    height: 2em;
+    margin: 0.25em;
+
+    border-radius: 0.25em;
+    border: 1px solid #0008;
+    background-color: #fff;
+    &.selected {
+      color: #00f;
+      border-color: #00f8;
+    }
+  }
+}
