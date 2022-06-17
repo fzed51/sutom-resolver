@@ -16,7 +16,8 @@
     border: 1px solid #0008;
     background-color: #fff;
     &.selected {
-      color: #00f;
+      color: #fff;
+      background-color: #00f;
       border-color: #00f8;
     }
   }

@@ -9,7 +9,10 @@ export interface ConfigFormProps {
 }
 
 export const ConfigForm: FC<ConfigFormProps> = ({ onSubmit }) => {
-  const [config, setConfig] = useState<Partial<ConfigApp>>({});
+  const [config, setConfig] = useState<Partial<ConfigApp>>({
+    length: 5,
+    letter: "A",
+  });
   const [error, setError] = useState<string>("");
 
   const handleSubmit = (e: SyntheticEvent) => {
