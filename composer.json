@@ -14,10 +14,10 @@
   },
   "scripts": {
     "resolve": "php ./src/sutom-resolvezr.php",
-    "build:heroku": [
+    "publish:d": [
       "webpack build --mode production",
       "git add .",
-      "git commit -m \"feat / update lasr build\"",
+      "git commit -m \"feat / update last build\"",
       "git push",
       "git push heroku devlop:main"
     ]

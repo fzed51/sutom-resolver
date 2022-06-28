@@ -40,6 +40,10 @@
   },
   "scripts": {
     "dev": "start php -S 0.0.0.0:8787 -t ./dist && start http://localhost:8787 && webpack watch --mode development",
-    "publish": "git push heroku main"
+    "_build:d" : "webpack build --mode production",
+    "_git:cmp" : "git add . && git commit -m \"feat / update last build\" && git push",
+    "_heroku:push:d" : "git push heroku devlop:main",
+    "_heroku:push" : "git push heroku main",
+    "publish:d": "yarn _build:d && yarn _git:cmp && yarn _heroku:push:d"
   }
 }
