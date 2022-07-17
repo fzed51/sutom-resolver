@@ -6,6 +6,7 @@ const config = {
   entry: [path.resolve("./app/index.tsx")],
   output: {
     filename: "[name].bundle.js",
+    path: path.resolve("./public")
   },
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".scss", ".css", ".json"],

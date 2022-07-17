@@ -1,5 +1,5 @@
-import { resolve } from "../../api";
 import React, { FC, useEffect, useState } from "react";
+import { resolve } from "../../api";
 import { ConfigApp, Proposal } from "../../types";
 import HistoryViewer from "../HistoryViewer";
 import ProposalInput from "../ProposalInput";
