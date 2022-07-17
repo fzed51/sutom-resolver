@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": "^7.4"
+    "php": ">=7.4"
   },
   "scripts": {
     "resolve": "php ./src/sutom-resolvezr.php",
