@@ -2,6 +2,7 @@
 
 use function Cli\pause;
 use function Cli\request;
+use function Cli\requestFixLengthOrSpec;
 use function Cli\writeln;
 use function Cli\requestFixLength;
 use function Cli\showResultat;
@@ -16,12 +17,20 @@ $fl = strtolower(trim(request("Quel est la 1ere lettre ?")));
 
 $words = readDataWithStartAndLength($nbCar, $fl);
 
+$lengthLst = 10;
+$pos = 0;
+
 do {
-    showList($words);
-    $actual = strtolower(requestFixLength("Donnez une proposition ?", $nbCar));
-    $result = strtolower(requestFixLength("Donnez le resultat ?", $nbCar));
-    showResultat($result);
-    $words = filtre($words, $actual, $result);
+    showList($words, $pos, $lengthLst);
+    $actual = strtolower(requestFixLengthOrSpec("Donnez une proposition ? ('+' pour voir plus de mots)", $nbCar, "+"));
+    if($actual === "+"){
+        $pos+=$lengthLst;
+    } else {
+        $pos = 0;
+        $result = strtolower(requestFixLength("Donnez le resultat ?", $nbCar));
+        showResultat($result);
+        $words = filtre($words, $actual, $result);
+    }
 } while (count($words) > 1);
 
 if (count($words) === 0) {

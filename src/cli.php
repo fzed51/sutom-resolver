@@ -27,6 +27,18 @@ function requestFixLength(string $question, int $len): string
     return $rep;
 }
 
+function requestFixLengthOrSpec(string $question, int $len, string $spec): string
+{
+    $rep = null;
+    do {
+        if ($rep !== null) {
+            writeln("Il n'y a pas le bon nopmbre de lettre");
+        }
+        $rep = trim(request($question));
+    } while (strlen($rep) !== $len && $rep !== $spec);
+    return $rep;
+}
+
 function pause(): void {
     request('Appuyer sur [entrée] pour continuer.');
 }

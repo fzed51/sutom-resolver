@@ -107,14 +107,14 @@ function filtre(array $words, $actual, $result): array
     return array_values($words);
 }
 
-function showList($words, $len = 10): void
+function showList($words, $start = 0, $len = 10): void
 {
     if ($len > count($words)) {
         $len = count($words);
     }
     writeln(count($words) . ' mots trouve');
     writeln("Voici les $len mot les plus judicieux");
-    for ($i = 0; $i < $len; $i++) {
+    for ($i = $start; $i < $start + $len; $i++) {
         writeln($words[$i]);
     }
 }
