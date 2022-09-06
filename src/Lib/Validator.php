@@ -58,6 +58,7 @@ class Validator
      */
     private function testConfig($config): bool
     {
+        $currentNbError = count($this->errors);
         if (!is_array($config)) {
             $this->addError('la configuration doit être un tableau');
             return false;
@@ -72,11 +73,12 @@ class Validator
         } elseif (!is_string($config['letter']) && strlen($config['letter']) !== 1) {
             $this->addError('la longueur doit être une chaine de 1 caractère');
         }
-        return count($this->errors) === 0;
+        return count($this->errors) === $currentNbError;
     }
 
-    private function testPropposals($proposals)
+    private function testPropposals($proposals): bool
     {
+        $currentNbError = count($this->errors);
         if (!is_array($proposals)) {
             $this->addError('les proposition doivent être un tableau');
             return false;
@@ -86,11 +88,12 @@ class Validator
                 $this->addError('La proposition no $i n\'est pas valide');
             }
         }
-        return count($this->errors) === 0;
+        return count($this->errors) === $currentNbError;
     }
 
-    private function testProposal($proposal)
+    private function testProposal($proposal): bool
     {
+        $currentNbError = count($this->errors);
         if (!is_array($proposal)) {
             $this->addError('la proposition doit être un tableau');
             return false;
@@ -101,7 +104,7 @@ class Validator
         if (!isset($proposal['match'])) {
             $this->addError('la proposition doit avoir un tableau de correspondances');
         }
-        return count($this->errors) === 0;
+        return count($this->errors) === $currentNbError;
     }
 
     /**
