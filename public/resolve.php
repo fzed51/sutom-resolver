@@ -25,6 +25,7 @@ $length = $config['length'];
 $letter = $config['letter'];
 
 $words = readDataWithStartAndLength($length, $letter);
+dump($words);
 
 $proposals = $data['proposals'];
 foreach ($proposals as $proposal){

@@ -134,3 +134,10 @@ function getRandomWord(array $words)
     }
     return $word;
 }
+
+function dump($var): void
+{
+    ob_start();
+    var_dump($var);
+    error_log(ob_get_clean());
+}
